@@ -1,6 +1,6 @@
 {
 	"name": "@dmail/thenable",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
@@ -23,7 +23,7 @@
 		"micmac": "2.0.0",
 		"@dmail/prettiest": "1.0.0",
 		"@dmail/shared-config": "3.1.0",
-		"@dmail/test": "2.2.1",
+		"@dmail/test": "3.0.0",
 		"babel-cli": "7.0.0-beta.0",
 		"babel-core": "7.0.0-beta.0",
 		"babel-eslint": "8.0.0",
@@ -54,7 +54,7 @@
 		"test-cover-text": "nyc report --reporter=text-summary",
 		"test-cover-table": "nyc report --reporter=text",
 		"test-cover-lcov": "nyc report --reporter=text-lcov > coverage.lcov",
-		"test-cover-upload": "codecov --token=f6dbc6c1-248c-4df0-987c-d89a182bef7f",
+		"test-cover-upload": "codecov --token=3ac79f89-810b-4349-9cd8-d52ef1607b1f",
 		"repo-reset": "npm run code-clean && npm run test-cover-clean && rimraf node_modules",
 		"repo-reinstall": "npm run repo-reset && npm install",
 		"build": "npm run code-build",

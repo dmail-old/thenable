@@ -25,10 +25,10 @@ export const rejected = (value) => {
 	return Promise.resolve(value)
 }
 
-export const promisifyFunction = (fn) => (...args) => {
-	try {
-		return resolved(fn(...args))
-	} catch (e) {
-		return rejected(e)
-	}
-}
+// export const promisifyFunction = (fn) => (...args) => {
+// 	try {
+// 		return resolved(fn(...args))
+// 	} catch (e) {
+// 		return rejected(e)
+// 	}
+// }

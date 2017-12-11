@@ -21,3 +21,5 @@ promise.then((value) => {
 	console.log(value) // logs 6
 })
 ```
+
+Check the [API documentation](./docs/api.md)
