@@ -1,18 +1,10 @@
-// import { reduce, sequence, sequenceFunctions, route, catchRejectedRoute } from "./reduce.js"
+import { reduce } from "./reduce.js"
+import { createTest } from "@dmail/test"
+import { mockExecution } from "@dmail/micmac"
 
-/*
-voici des examples pour route
-
-route(
-  () => { foo: true },
-  (value) => {
-    if (value.foo === true) {
-      return Promise.reject(10)
-    }
-  },
-  (v) => {}, // should be ignored
-  catchRejectedRoute((v) => {
-    // ici on doit recevoir 10
-  })
-)
-*/
+export const test = createTest({
+	"": ({ pass }) => {
+		mockExecution(({ tick }) => {})
+		pass()
+	},
+})

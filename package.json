@@ -20,7 +20,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@dmail/ensure": "0.0.2",
+		"micmac": "2.0.0",
 		"@dmail/prettiest": "1.0.0",
 		"@dmail/shared-config": "3.1.0",
 		"@dmail/test": "2.2.1",
