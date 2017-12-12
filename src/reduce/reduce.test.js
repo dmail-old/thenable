@@ -1,12 +1,16 @@
 import { reduce } from "./reduce.js"
 import { createTest } from "@dmail/test"
 import { assertWillRejectWith, assertWillResolveWith } from "../testHelper.js"
+import assert from "assert"
 
 export const test = createTest({
 	"called with empty array": ({ pass }) => {
-		assertWillRejectWith(
+		assert.throws(
 			() => reduce([]),
-			new Error("reduce called on empty iterable without initialValue"),
+			(error) => {
+				assert.deepEqual(error, new Error("reduce called on empty iterable without initialValue"))
+				return true
+			},
 		)
 		pass()
 	},

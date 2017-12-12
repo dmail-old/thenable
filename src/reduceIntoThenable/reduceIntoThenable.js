@@ -1,23 +1,14 @@
 import { fromFunction, resolved } from "../helper.js"
 
-export const reduceIntoThenable = ({ iterable, reducer, initialValue }) => {
+export const reduceIntoThenable = ({
+	iterator,
+	reducer,
+	defaultValue,
+	defaultState = "resolved",
+}) => {
+	const { iterable, iterate } = iterator
+
 	return fromFunction((resolve, reject) => {
-		const createIterate = () => {
-			const iterator = iterable[Symbol.iterator]()
-			let index = 0
-			return () => {
-				const next = iterator.next()
-				index++
-				return {
-					done: next.done,
-					value: next.value,
-					index,
-				}
-			}
-		}
-
-		const iterate = createIterate()
-
 		let pending = true
 
 		const shortResolve = (value) => {
@@ -53,13 +44,6 @@ export const reduceIntoThenable = ({ iterable, reducer, initialValue }) => {
 			resolved(nextValue).then((arg) => reduce(arg, "resolved"), (arg) => reduce(arg, "rejected"))
 		}
 
-		if (initialValue === undefined) {
-			const { done, value } = iterate()
-			if (done) {
-				throw new Error("reduce called on empty iterable without initialValue")
-			}
-			initialValue = value
-		}
-		reduce(initialValue, "resolved")
+		reduce(defaultValue, defaultState)
 	})
 }

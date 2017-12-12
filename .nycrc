@@ -5,7 +5,8 @@
   ],
   "exclude": [
     "dist/**/*.test.*",
-    "dist/testHelper.js"
+    "dist/testHelper.js",
+    "dist/src/pipe/**"
   ],
   "extension": [
     ".jsx"

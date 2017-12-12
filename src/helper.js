@@ -25,6 +25,26 @@ export const rejected = (value) => {
 	return Promise.resolve(value)
 }
 
+export const createIterator = (iterable) => {
+	const iterator = iterable[Symbol.iterator]()
+	let index = 0
+
+	const iterate = () => {
+		const next = iterator.next()
+		index++
+		return {
+			done: next.done,
+			value: next.value,
+			index,
+			iterable,
+		}
+	}
+
+	return {
+		iterate,
+	}
+}
+
 // export const promisifyFunction = (fn) => (...args) => {
 // 	try {
 // 		return resolved(fn(...args))

@@ -1,8 +1,14 @@
-import { reduce } from "../reduce/reduce.js"
+import { reduceIntoThenable } from "../reduceIntoThenable/reduceIntoThenable.js"
+import { createIterator } from "../helper.js"
 
 export const sequenceFunctions = (...fns) => {
-	const initialValue = {}
-	return reduce(fns, (previousValue, fn) => fn(previousValue), initialValue).then((value) => {
-		return value === initialValue ? undefined : value
+	return reduceIntoThenable({
+		iterator: createIterator(fns),
+		reducer: ({ state, previousValue, value: fn, reject }) => {
+			if (state === "resolved") {
+				return fn(previousValue)
+			}
+			return reject(previousValue)
+		},
 	})
 }

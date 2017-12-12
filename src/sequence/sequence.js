@@ -1,12 +1,14 @@
-import { reduce } from "../reduce/reduce.js"
-import { resolved } from "../helper.js"
+import { reduceIntoThenable } from "../reduceIntoThenable/reduceIntoThenable.js"
+import { createIterator } from "../helper.js"
 
 export const sequence = (iterable, map = (v) => v) => {
-	return reduce(
-		iterable,
-		(previousValue, value, index, iterable) => {
-			return map(value, index, iterable)
+	return reduceIntoThenable({
+		iterator: createIterator(iterable),
+		reducer: ({ state, previousValue, value, index, iterable, reject }) => {
+			if (state === "resolved") {
+				return map(value, index, iterable)
+			}
+			return reject(previousValue)
 		},
-		resolved(undefined),
-	)
+	})
 }
